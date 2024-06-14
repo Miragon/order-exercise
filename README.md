@@ -23,7 +23,7 @@ Leider sind wir keine BPMN Experten und haben ein paar Details im Modell vergess
 Bitte ergänze den Prozess, sodass er korrekt mit unseren Workern interagiert.
 Wir sind außerdem Fans von Unit-Tests und würden uns freuen, wenn du den Prozess testen könntest.
 Worker sollten mitgetestet werden, den Rest kannst du mocken.
-Die Klasse dafür findest du unter `src/test/java/com/camunda/demo/order2cash/Order2CashProcessTest.java`.
+Die Klasse dafür findest du unter `src/test/kotlin/io/miragon/exercise/order/Order2CashPorcessTest.kt`.
 
 ## 3. Step: Check order
 
