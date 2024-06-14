@@ -1,4 +1,4 @@
 package io.miragon.exercise.order
 
-class Order2CashPorcessTest {
+class Order2CashProcessTest {
 }

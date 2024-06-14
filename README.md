@@ -23,16 +23,20 @@ Leider sind wir keine BPMN Experten und haben ein paar Details im Modell vergess
 Bitte ergänze den Prozess, sodass er korrekt mit unseren Workern interagiert.
 Wir sind außerdem Fans von Unit-Tests und würden uns freuen, wenn du den Prozess testen könntest.
 Worker sollten mitgetestet werden, den Rest kannst du mocken.
-Die Klasse dafür findest du unter `src/test/kotlin/io/miragon/exercise/order/Order2CashPorcessTest.kt`.
+Die Klasse dafür findest du unter `src/test/kotlin/io/miragon/exercise/order/Order2CashProcessTest.kt`.
 
 ## 3. Step: Check order
 
 Der Order Check muss implementiert werden. Hierbei soll geprüft werden, ob die Bestellung einen bestimmten Wert
 überschreitet. Wenn der Wert größer als 1000 ist, soll der Prozess abgebrochen werden. Ansonsten soll der Prozess
-weiterlaufen.
+weiterlaufen. Worker, Use Case und Service sind bereits vorhanden. Du musst nur noch die Implementierung vornehmen.
 
 ## 4. Step: Payment
 
-Der Payment Use Case soll implementiert werden.
-Dabei wird die Order geladen und auf bezahlt gesetzt.
+Die Bestellung soll bezahlt werden. Aber wie bringen wir die Informationen an den Prozess?
+
+Es ist bereits ein Rest Controller für das Payment vorhanden.
+Der Payment Use Case muss aber noch implementiert werden.
+Dabei soll die Order geladen und auf bezahlt gesetzt werden.
 Zusätzlich soll im SendPaymentOutPort eine Nachricht an den Prozess gesendet werden.
+Hilf uns dabei! 
