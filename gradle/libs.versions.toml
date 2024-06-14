@@ -1,0 +1,41 @@
+[versions]
+springBoot = "3.2.3"
+springDependencyManagement = "1.1.4"
+kotlinJvm = "1.9.22"
+kotlinReflect = "1.7.20"
+kotlinPluginSpring = "1.9.22"
+kotlinLogging = "3.0.5"
+kotlinJackson = "2.17.0"
+zeebe = "8.4.0"
+openFeign = "4.1.1"
+
+[libraries]
+# Spring Boot
+springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
+# REST
+springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
+# OpenFeign
+springCloudOpenFeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign", version.ref = "openFeign" }
+# Kotlin
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinReflect" }
+kotlinLoggingLib = { module = "io.github.microutils:kotlin-logging", version.ref = "kotlinLogging" }
+kotlinStdLib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlinJvm" }
+kotlinJackson = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "kotlinJackson" }
+
+# Zeebe
+zeebeClientJava = { module = "io.camunda:zeebe-client-java", version.ref = "zeebe" }
+springBootStarterCamunda = { module = "io.camunda.spring:spring-boot-starter-camunda", version.ref = "zeebe" }
+zeebeTestContainer = { module = "io.camunda.spring:spring-boot-starter-camunda-test", version.ref = "zeebe" }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinJvm" }
+kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinPluginSpring" }
+
+[bundles]
+default = ["springBootStarter", "kotlinReflect", "kotlinLoggingLib", "kotlinStdLib", "kotlinJackson"]
+defaultTest = ["springBootStarterTest", "zeebeTestContainer"]
+rest = ["springBootStarterWeb"]
+zeebe = ["zeebeClientJava", "springBootStarterCamunda"]

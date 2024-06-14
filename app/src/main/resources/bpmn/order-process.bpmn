@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1jplppe" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.21.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.4.0">
+  <bpmn:process id="order-process" name="Order process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Order recieved">
+      <bpmn:outgoing>Flow_012kusi</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_012kusi" sourceRef="StartEvent_1" targetRef="Activity_10mbvk7" />
+    <bpmn:exclusiveGateway id="Gateway_15v7b76" name="Order OK?" default="Flow_117nidi">
+      <bpmn:incoming>Flow_1vrcxub</bpmn:incoming>
+      <bpmn:outgoing>Flow_117nidi</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ygbvwx</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1vrcxub" sourceRef="Activity_10mbvk7" targetRef="Gateway_15v7b76" />
+    <bpmn:serviceTask id="Activity_10mbvk7" name="Check Order">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="abc" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_012kusi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vrcxub</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_117nidi" sourceRef="Gateway_15v7b76" targetRef="Event_09hhd50" />
+    <bpmn:intermediateCatchEvent id="Event_09hhd50" name="Payment received">
+      <bpmn:incoming>Flow_117nidi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jty3gi</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1j9926a" messageRef="Message_2e7rekp" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_155kk26" name="Order completed">
+      <bpmn:incoming>Flow_1jty3gi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1jty3gi" sourceRef="Event_09hhd50" targetRef="Event_155kk26" />
+    <bpmn:endEvent id="Event_1fosiks" name="Order cancled">
+      <bpmn:incoming>Flow_1ygbvwx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ygbvwx" sourceRef="Gateway_15v7b76" targetRef="Event_1fosiks">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(orderOK)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmn:message id="Message_2e7rekp" name="Message_2e7rekp">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=orderId" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="order-process">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="161" y="122" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_15v7b76_di" bpmnElement="Gateway_15v7b76" isMarkerVisible="true">
+        <dc:Bounds x="425" y="72" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="423" y="48" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1va4a8w_di" bpmnElement="Activity_10mbvk7">
+        <dc:Bounds x="270" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_155kk26_di" bpmnElement="Event_155kk26">
+        <dc:Bounds x="682" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="659" y="122" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0stk82h_di" bpmnElement="Event_09hhd50">
+        <dc:Bounds x="562" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="536" y="122" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1fosiks_di" bpmnElement="Event_1fosiks">
+        <dc:Bounds x="682" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="665" y="235" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_012kusi_di" bpmnElement="Flow_012kusi">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="270" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vrcxub_di" bpmnElement="Flow_1vrcxub">
+        <di:waypoint x="370" y="97" />
+        <di:waypoint x="425" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_117nidi_di" bpmnElement="Flow_117nidi">
+        <di:waypoint x="475" y="97" />
+        <di:waypoint x="562" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jty3gi_di" bpmnElement="Flow_1jty3gi">
+        <di:waypoint x="598" y="97" />
+        <di:waypoint x="682" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ygbvwx_di" bpmnElement="Flow_1ygbvwx">
+        <di:waypoint x="450" y="122" />
+        <di:waypoint x="450" y="210" />
+        <di:waypoint x="682" y="210" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
