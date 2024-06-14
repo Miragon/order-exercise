@@ -32,6 +32,26 @@ Der Order Check muss implementiert werden. Hierbei soll geprüft werden, ob die 
 weiterlaufen. Worker, Use Case und Service sind bereits vorhanden. Du musst nur noch die Implementierung vornehmen.
 Außerdem musst du etwas im Prozess anpassen, auf dem Pfad stimmt etwas mit einer Bedingung nicht.
 
+Um einen Prozess zu starten, lohnt es sich auf ein Tool wie Postman zurückzugreifen.
+Als Tipp: Welche Artikel es gibt, kannst du im ArticlePriceListPersistenceAdapter nachschauen.
+
+### Beispiel Request
+
+POST http://localhost:8883/api/order
+
+```json
+
+{
+  "customer": "John",
+  "orderItems": [
+    {
+      "articleId": 1,
+      "quantity": 10
+    }
+  ]
+}
+```
+
 ## 4. Step: Payment
 
 Die Bestellung soll bezahlt werden. Aber wie bringen wir die Informationen an den Prozess?
