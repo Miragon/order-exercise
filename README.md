@@ -30,6 +30,7 @@ Die Klasse dafür findest du unter `src/test/kotlin/io/miragon/exercise/order/Or
 Der Order Check muss implementiert werden. Hierbei soll geprüft werden, ob die Bestellung einen bestimmten Wert
 überschreitet. Wenn der Wert größer als 1000 ist, soll der Prozess abgebrochen werden. Ansonsten soll der Prozess
 weiterlaufen. Worker, Use Case und Service sind bereits vorhanden. Du musst nur noch die Implementierung vornehmen.
+Außerdem musst du etwas im Prozess anpassen, auf dem Pfad stimmt etwas mit einer Bedingung nicht.
 
 ## 4. Step: Payment
 

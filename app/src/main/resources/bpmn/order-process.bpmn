@@ -32,7 +32,7 @@
       <bpmn:incoming>Flow_1ygbvwx</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1ygbvwx" sourceRef="Gateway_15v7b76" targetRef="Event_1fosiks">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(orderOK)</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(wrongVariable)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:message id="Message_2e7rekp" name="Message_2e7rekp">
